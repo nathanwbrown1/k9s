@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright Authors of K9s
+// Modified by kubetui contributors: install built-in companion actions.
 
 package view
 
@@ -64,6 +65,7 @@ func hotKeyActions(r Runner, aa *ui.KeyActions) error {
 			aa.Delete(k)
 		}
 	})
+	defer kubetuiActions(r, aa)
 
 	var errs error
 	if err := hh.Load(r.App().Config.ContextHotkeysPath()); err != nil {
